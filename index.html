@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kdrama Clothing Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .product-card {
+            border: 2px solid #ff66b2;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            background: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .btn-add {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+        }
+        .cart {
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid #333;
+            background: white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Kdrama Inspired Girls Clothing</h1>
+        <div class="row">
+            <div class="col-md-4" id="product-list">
+                <div class="product-card">
+                    <img src="dress1.jpg" alt="Dress 1">
+                    <h5>Do Dohee Dress</h5>
+                    <p>Price: ₹1,499</p>
+                    <button class="btn btn-add" onclick="addToCart('Do Dohee Dress', 1499)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="dress2.jpg" alt="Dress 2">
+                    <h5>Casual Office Dress</h5>
+                    <p>Price: ₹1,299</p>
+                    <button class="btn btn-add" onclick="addToCart('Casual Office Dress', 1299)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="dress3.jpg" alt="Dress 3">
+                    <h5>Korean Hanbok Dress</h5>
+                    <p>Price: ₹1,799</p>
+                    <button class="btn btn-add" onclick="addToCart('Korean Hanbok Dress', 1799)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+       <div class="cart">
+            <h3>Shopping Cart</h3>
+            <ul id="cart-items"></ul>
+            <h4>Total: ₹<span id="cart-total">0</span></h4>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            updateCart();
+        }
+        function updateCart() {
+            let cartList = document.getElementById("cart-items");
+            let total = 0;
+            cartList.innerHTML = "";
+            cart.forEach(product => {
+                let li = document.createElement("li");
+                li.textContent = `${product.item} - ₹${product.price}`;
+                cartList.appendChild(li);
+                total += product.price;
+            });
+            document.getElementById("cart-total").textContent = total;
+        }
+    </script>
+</body>
+</html>
